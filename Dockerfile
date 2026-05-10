@@ -24,4 +24,4 @@ EXPOSE 8080
 
 # Jalankan aplikasi menggunakan Gunicorn dengan worker Uvicorn
 # app:app artinya (nama_file_python):(nama_variabel_flask)
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:8080", "app:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "app:app"]

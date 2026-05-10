@@ -27,6 +27,11 @@ def get_ydl_opts(download=True):
         'logtostderr': False,
         'quiet': True,
         'no_warnings': True,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android']
+            }
+        },
     }
 
     if download:

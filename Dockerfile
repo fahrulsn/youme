@@ -1,8 +1,11 @@
 FROM python:3.10-slim
 
 # Wajib install curl dan nodejs untuk memecahkan tantangan bot YouTube terbaru
-RUN apt-get update && apt-get install -y ffmpeg curl \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+# Bagian install FFmpeg dan Node.js 20 (LTS)
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 

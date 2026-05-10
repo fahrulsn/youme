@@ -19,7 +19,7 @@ def get_ydl_opts(download=True):
         print(f"DEBUG: Cookies written to {COOKIE_PATH}")
     
     opts = {
-        'format': 'best',
+        'format': '(bestvideo+bestaudio/best)',
 
         'cookiefile': COOKIE_PATH,
 

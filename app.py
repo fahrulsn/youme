@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, send_file, jsonify
 from yt_dlp import YoutubeDL
 import os
-import time
 
 app = Flask(__name__)
 
 # Gunakan /tmp jika di Vercel, jika lokal gunakan folder 'downloads'
 DOWNLOAD_FOLDER = '/tmp' if os.environ.get('VERCEL') else 'downloads'
-
+COOKIE_PATH = "/tmp/cookies.txt"
+if os.environ.get('YOUTUBE_COOKIES'):
+    with open(COOKIE_PATH, 'w') as f:
+        f.write(os.environ.get('YOUTUBE_COOKIES'))
 if not os.path.exists(DOWNLOAD_FOLDER):
     os.makedirs(DOWNLOAD_FOLDER)
 
@@ -50,7 +52,7 @@ def start_download():
             'format': 'bestaudio/best',
             'restrictfilenames': True, 
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
-            'cookiefile': 'cookies.txt',
+            'cookiefile': COOKIE_PATH,
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',

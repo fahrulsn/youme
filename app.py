@@ -22,14 +22,20 @@ def get_ydl_opts(download=True):
         'format': 'bestaudio/best',
         'restrictfilenames': True,
         'cookiefile': COOKIE_PATH if cookie_content else None,
+
         'nocheckcertificate': True,
         'ignoreerrors': False,
-        'logtostderr': False,
+
         'quiet': True,
         'no_warnings': True,
+
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0'
+        },
+
         'extractor_args': {
             'youtube': {
-                'player_client': ['android']
+                'player_client': ['tv_embedded']
             }
         },
     }
@@ -101,4 +107,4 @@ def download_file(filename):
 
 if __name__ == '__main__':
     # Lokal test
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=5001)

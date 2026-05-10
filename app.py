@@ -19,7 +19,7 @@ def get_ydl_opts(download=True):
         print(f"DEBUG: Cookies written to {COOKIE_PATH}")
     
     opts = {
-        'format': 'bestaudio/best',
+        'format': 'bestaudio',
         'restrictfilenames': True,
         'cookiefile': COOKIE_PATH if cookie_content else None,
 
@@ -107,4 +107,4 @@ def download_file(filename):
 
 if __name__ == '__main__':
     # Lokal test
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=8080)

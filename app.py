@@ -26,12 +26,12 @@ def get_ydl_opts(download=True):
         'restrictfilenames': True,
 
         'http_headers': {
-            'User-Agent': 'com.google.ios.youtube/20.10.4 (iPhone16,2; U; CPU iOS 18_2 like Mac OS X)'
+            'User-Agent': 'Mozilla/5.0'
         },
 
         'extractor_args': {
             'youtube': {
-                'player_client': ['ios']
+                'player_client': ['tv_embedded']
             }
         },
 
@@ -77,6 +77,14 @@ def home():
                     'duration': info.get('duration', 0),
                     'url': youtube_url
                 }
+                for f in info['formats']:
+                    print(
+                        f['format_id'],
+                        f.get('ext'),
+                        f.get('resolution'),
+                        f.get('acodec'),
+                        f.get('vcodec')
+                    )
             return render_template('index.html', video_info=video_info)
         except Exception as e:
             return render_template('index.html', error=str(e))
@@ -118,4 +126,4 @@ def download_file(filename):
 
 if __name__ == '__main__':
     # Lokal test
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=5000)

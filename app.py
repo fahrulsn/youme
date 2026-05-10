@@ -19,25 +19,28 @@ def get_ydl_opts(download=True):
         print(f"DEBUG: Cookies written to {COOKIE_PATH}")
     
     opts = {
-        'format': 'bestaudio',
+        'format': 'best',
+
+        'cookiefile': COOKIE_PATH,
+
         'restrictfilenames': True,
-        'cookiefile': COOKIE_PATH if cookie_content else None,
-
-        'nocheckcertificate': True,
-        'ignoreerrors': False,
-
-        'quiet': True,
-        'no_warnings': True,
 
         'http_headers': {
-            'User-Agent': 'Mozilla/5.0'
+            'User-Agent': 'com.google.ios.youtube/20.10.4 (iPhone16,2; U; CPU iOS 18_2 like Mac OS X)'
         },
 
         'extractor_args': {
             'youtube': {
-                'player_client': ['tv_embedded']
+                'player_client': ['ios']
             }
         },
+
+        'sleep_interval_requests': 1,
+
+        'extractor_retries': 5,
+
+        'quiet': True,
+        'no_warnings': True,
     }
 
     if download:

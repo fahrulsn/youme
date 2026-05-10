@@ -19,19 +19,19 @@ def get_ydl_opts(download=True):
         print(f"DEBUG: Cookies written to {COOKIE_PATH}")
     
     opts = {
-        'format': '(bestvideo+bestaudio/best)',
+        'format': '18/best',
 
         'cookiefile': COOKIE_PATH,
 
         'restrictfilenames': True,
 
         'http_headers': {
-            'User-Agent': 'Mozilla/5.0'
+            'User-Agent': 'com.google.android.youtube/20.10.35 (Linux; U; Android 14)'
         },
 
         'extractor_args': {
             'youtube': {
-                'player_client': ['tv_embedded']
+                'player_client': ['android']
             }
         },
 

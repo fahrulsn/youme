@@ -26,12 +26,12 @@ def get_ydl_opts(download=True):
         'restrictfilenames': True,
 
         'http_headers': {
-            'User-Agent': 'com.google.android.youtube/20.10.35 (Linux; U; Android 14)'
+            'User-Agent': 'com.google.ios.youtube/20.10.4 (iPhone16,2; U; CPU iOS 18_2 like Mac OS X)'
         },
 
         'extractor_args': {
             'youtube': {
-                'player_client': ['android']
+                'player_client': ['ios']
             }
         },
 

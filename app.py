@@ -50,11 +50,12 @@ def start_download():
             'format': 'bestaudio/best',
             'restrictfilenames': True, 
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
+            'cookiefile': 'cookies.txt',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
                 'preferredquality': '192',
-    }],
+            }],
                 'quiet': True,
                 'no_warnings': True,
         }

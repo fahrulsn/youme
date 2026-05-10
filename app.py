@@ -15,7 +15,7 @@ def get_ydl_opts(download=True):
     
     if cookie_content:
         with open(COOKIE_PATH, 'w', encoding='utf-8') as f:
-            f.write(cookie_content.strip())
+            f.write(cookie_content.replace('\\n', '\n').strip())
         print(f"DEBUG: Cookies written to {COOKIE_PATH}")
     
     opts = {

@@ -6,12 +6,20 @@ app = Flask(__name__)
 
 # Gunakan /tmp jika di Vercel, jika lokal gunakan folder 'downloads'
 DOWNLOAD_FOLDER = '/tmp' if os.environ.get('VERCEL') else 'downloads'
+# Letakkan di bagian atas setelah app = Flask(__name__)
 COOKIE_PATH = "/tmp/cookies.txt"
-if os.environ.get('YOUTUBE_COOKIES'):
-    with open(COOKIE_PATH, 'w') as f:
-        f.write(os.environ.get('YOUTUBE_COOKIES'))
-if not os.path.exists(DOWNLOAD_FOLDER):
-    os.makedirs(DOWNLOAD_FOLDER)
+
+def prepare_cookies():
+    raw_cookies = os.environ.get('YOUTUBE_COOKIES')
+    if raw_cookies:
+        try:
+            with open(COOKIE_PATH, 'w') as f:
+                f.write(raw_cookies)
+            print(f"DEBUG: Cookies successfully written to {COOKIE_PATH}")
+        except Exception as e:
+            print(f"DEBUG: Failed to write cookies: {e}")
+    else:
+        print("DEBUG: No YOUTUBE_COOKIES found in environment variables")
 
 def cleanup_downloads():
     """Menghapus file lama jika lebih dari 3 file"""

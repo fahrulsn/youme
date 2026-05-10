@@ -92,6 +92,14 @@ def start_download():
         with YoutubeDL(opts) as ydl:
             info = ydl.extract_info(url, download=True)
             # Dapatkan nama file asli yang sudah diproses
+            for f in info['formats']:
+                print(
+                    f['format_id'],
+                    f.get('ext'),
+                    f.get('resolution'),
+                    f.get('acodec'),
+                    f.get('vcodec')
+                )
             final_filename = ydl.prepare_filename(info)
             final_filename = os.path.splitext(final_filename)[0] + '.mp3'
             basename = os.path.basename(final_filename)

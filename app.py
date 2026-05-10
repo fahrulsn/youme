@@ -48,17 +48,15 @@ def start_download():
         
         ydl_opts = {
             'format': 'bestaudio/best',
-            # restrictfilenames: True akan menghapus '#' dan spasi agar aman di URL
             'restrictfilenames': True, 
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
                 'preferredquality': '192',
-            }],
-            # Jika di Vercel, path ffmpeg akan berbeda. 
-            # Hapus baris ffmpeg_location jika sudah install via package manager di Linux
-            'ffmpeg_location': r'C:\ffmpeg\bin\ffmpeg.exe' if not os.environ.get('VERCEL') else '/usr/bin/ffmpeg',
+    }],
+                'quiet': True,
+                'no_warnings': True,
         }
         
         with YoutubeDL(ydl_opts) as ydl:

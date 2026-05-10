@@ -4,6 +4,9 @@ FROM python:3.10-slim
 # Install FFmpeg dan dependencies sistem
 RUN apt-get update && apt-get install -y \
     ffmpeg \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory di dalam container
@@ -17,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Buat folder downloads jika belum ada
-RUN mkdir -p /app/downloads
+RUN mkdir -p /tmp && chmod 777 /tmp
 
 # Expose port yang digunakan Flask
 EXPOSE 8080

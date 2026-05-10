@@ -1,4 +1,4 @@
 flask
-yt-dlp:latest
+yt-dlp
 gunicorn
 uvicorn

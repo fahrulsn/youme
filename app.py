@@ -51,6 +51,7 @@ def home():
 @app.route('/download', methods=['POST'])
 def start_download():
     try:
+        prepare_cookies()
         # Jalankan pembersihan sebelum download baru
         cleanup_downloads()
         
